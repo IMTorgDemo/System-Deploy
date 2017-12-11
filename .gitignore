@@ -1,7 +1,8 @@
 
 .metadata
-bin/
 tmp/
+log/
+
 *.tmp
 *.bak
 *.swp
@@ -11,6 +12,7 @@ local.properties
 .loadpath
 .recommenders
 *.jar
+*.log
 *.log.*
 *.zip
 
