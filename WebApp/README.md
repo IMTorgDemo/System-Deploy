@@ -6,19 +6,19 @@ This web app randomly routes the user (python demo requestor) to one of two site
 
 ```
 npm install
-pm2 app.js
+npm run prod
+#pm2 app.js
 ```
 
 
 # Develop
 
 ```
-nodemon ./bin/www localhost 3000
-NODE_ENV=development ./bin/www
+npm run dev
 ```
 
 # Test
 
 ```
-npm test
+npm run test
 ```
