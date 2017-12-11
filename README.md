@@ -125,7 +125,13 @@ Task scheduler for running spark scripts, cyclically.
 
 # Running
 
-__Note:__ before 
+Enter the Requestor directory
+
+```
+pipenv shell
+pipenv install 
+pipenv run python Requestor.py
+```
 
 
 
