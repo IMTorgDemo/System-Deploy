@@ -45,7 +45,7 @@ __Warning:__ the repo must be run from the `/home/<user>/` directory; otherwise,
 git clone <this directory>
 npm install
 npm run test
-npm run prod
+npm run docker
 ```
 
 
@@ -61,15 +61,11 @@ Take a look around, if necessary: `docker exec -it data_store mongo`
 
 
 
-`docker run --name web_app --link data_store:mongo -d node_app`
 
-
-
-
-
-### WebApp - Mongo Link
+### WebApp - Mongo Link ????
 [reference for various docker configurations](http://www.ifdattic.com/how-to-mongodb-nodejs-docker/)
 create a container which has all the required data mounted and is linked to mongo container. 
+`docker run --name web_app --link data_store:mongo -d node_app`
 `docker run -it --name node -v "$(pwd)":/data --link mongo:mongo -w /data -p 8082:8082 node bash`
 ```
 // Ways to connect to MongoDb
@@ -89,6 +85,11 @@ MongoClient.connect('mongodb://mongo:27017/blog', function(err, db) {
 ```
 
 
+### Spark-Mongo Processing
+
+sudo docker run -i -t --link data_store:mongo zero323/mongo-spark:master /bin/bash
+pyspark --jars ${JARS} --driver-class-path ${SPARK_DRIVER_EXTRA_CLASSPATH}
+
 
 ### Spark-Jupyter Reporting
 
@@ -107,10 +108,7 @@ sudo docker exec -it 3783e6eff869 bash
 
 
 
-### Spark-Mongo Processing
 
-sudo docker run -i -t --link data_store:mongo zero323/mongo-spark:master /bin/bash
-pyspark --jars ${JARS} --driver-class-path ${SPARK_DRIVER_EXTRA_CLASSPATH}
 
 
 
