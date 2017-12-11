@@ -50,9 +50,10 @@ git clone <this directory>
 
 ### Mongo
 
-[](https://hub.docker.com/r/library/mongo/)
+[mongo lib](https://hub.docker.com/r/library/mongo/)
 
 `docker pull mongo`
+`docker run --name data_store -d mongo`
 
 You can run the interactive mongo shell by running the following command:
 
