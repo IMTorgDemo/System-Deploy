@@ -30,7 +30,7 @@ __Note__
 
 * Each service is maintained in its own docker container
 * Each service has its own dependencies and documentation
-* Troubleshoot configurations, such as ip address, using the following command: `docker inspect data_store`
+* Troubleshoot configurations, such as ip address, using the following command: `docker inspect <name>`
 
 
 
@@ -42,9 +42,10 @@ __Warning:__ the repo must be run from the `/home/<user>/` directory; otherwise,
 
 ### Node & Web App
 ```
-docker pull node:latest
-docker run -it --rm node bash
 git clone <this directory>
+npm install
+npm run test
+npm run prod
 ```
 
 
@@ -54,36 +55,32 @@ git clone <this directory>
 
 `docker pull mongo`
 `docker run --name data_store -d mongo`
+Get the ipaddress using: `docker inspect data_store`
 
-You can run the interactive mongo shell by running the following command:
+Take a look around, if necessary: `docker exec -it data_store mongo`
 
-`docker run -it -p 28000:27017 --name data_store mongo:latest mongo`
 
-Otherwise, if your container is already running, you can use the exec command:
 
-`docker exec -it data_store mongo`
+`docker run --name web_app --link data_store:mongo -d node_app`
+
+
 
 
 
 ### WebApp - Mongo Link
-
 [reference for various docker configurations](http://www.ifdattic.com/how-to-mongodb-nodejs-docker/)
-
 create a container which has all the required data mounted and is linked to mongo container. 
 `docker run -it --name node -v "$(pwd)":/data --link mongo:mongo -w /data -p 8082:8082 node bash`
-
 ```
 // Ways to connect to MongoDb
 // Original connect
 MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
     // ...
 });
-
 // Connect using environment variables
 MongoClient.connect('mongodb://'+process.env.MONGO_PORT_27017_TCP_ADDR+':'+process.env.MONGO_PORT_27017_TCP_PORT+'/blog', function(err, db) {
     // ...
 });
-
 // Connect using hosts entry
 MongoClient.connect('mongodb://mongo:27017/blog', function(err, db) {
     // ...

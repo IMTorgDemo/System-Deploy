@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "NODE_ENV=development nodemon ./bin/www localhost 3000",
         "prod": "NODE_ENV=production node ./bin/www",
-        "test": "mocha"
+        "test": "mocha",
+        "docker": "sudo docker build -t node_app . ; sudo docker run --name web_app --link data_store:mongo -d node_app"
     },
     "dependencies": {
         "async": "^2.6.0",
