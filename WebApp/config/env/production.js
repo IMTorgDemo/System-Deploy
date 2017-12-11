@@ -11,7 +11,7 @@ module.exports = {
         collection: 'foo'
     },
     logs: {
-        location: process.cwd() + "/log"
+        location: process.cwd() + "/../env_Processing/data_shared"
     },
     cors: {
         origin: ['*'],
