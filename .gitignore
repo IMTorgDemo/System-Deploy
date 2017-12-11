@@ -11,7 +11,7 @@ local.properties
 .loadpath
 .recommenders
 *.jar
-*.log
+*.log.*
 *.zip
 
 # External tool builders
