@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name": "client_app",
+        "script": "server.js",
+        "env_production": { "NODE_ENV": "production" }
+    }]
+}

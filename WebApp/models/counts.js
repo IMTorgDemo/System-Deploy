@@ -1,3 +1,4 @@
+/*  *** REFACTOR LATER ***
 var db = require('../config/db');
 var mongoose = require('mongoose');
 
@@ -12,3 +13,4 @@ var CountsSchema = new Schema({
 
 //Export model
 module.exports = mongoose.model('bar', CountsSchema);
+*/

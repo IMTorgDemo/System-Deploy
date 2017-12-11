@@ -5,12 +5,16 @@ var formatOut = bformat({ outputMode: 'short' });
 var RotatingFileStream = require('bunyan-rotating-file-stream');
 
 exports.log = bunyan.createLogger({
-    name: 'ssaga_api',
+    name: 'web_app',
     streams: [{
+            level: 'debug',
+            stream: process.stdout
+        },
+        {
             level: 'info',
             type: 'raw',
             stream: new RotatingFileStream({
-                path: path.join(process.cwd() + "/log", 'myapp-info.log'),
+                path: path.join(global.config.logs.location, 'myapp-info.log'),
                 rotateExisting: true, // Give ourselves a clean file when we start up, based on period
                 threshold: '10k', // Rotate log files larger than 10 megabytes
                 totalSize: '100k', // Don't keep more than 100kb of archived log files
@@ -21,7 +25,7 @@ exports.log = bunyan.createLogger({
             level: 'error',
             type: 'raw',
             stream: new RotatingFileStream({
-                path: path.join(process.cwd() + "/log", 'myapp-error.log'),
+                path: path.join(global.config.logs.location, 'myapp-error.log'),
                 rotateExisting: true, // Give ourselves a clean file when we start up, based on period
                 threshold: '10k', // Rotate log files larger than 10 kilbytes
                 totalSize: '100k', // Don't keep more than 100kb of archived log files

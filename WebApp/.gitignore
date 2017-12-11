@@ -28,3 +28,46 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+*.sqlite3
+
+pids
+logs
+results
+tmp
+coverage
+
+# API keys
+.env
+
+# Dependency directory
+node_modules
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Db
+dev.sqlite3
+dev.sqlite3-journal
+imt_projects.sqlite3
+
+# Diagrams
+private/*.svg
+
+# Config
+.vscode/*

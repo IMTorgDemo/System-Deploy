@@ -12,11 +12,18 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 var server = http.createServer(app);
 
-
 // Listen on provided port, on all network interfaces.
-server.listen(port);
+
+server.listen(port, function() {
+    global.log.info('Express server running in mode: ' + (app.get('env')).toUpperCase() + ' at port ' + app.get('port'));
+});
 server.on('error', onError);
 server.on('listening', onListening);
+
+
+
+
+
 
 //Normalize a port into a number, string, or false.
 function normalizePort(val) {

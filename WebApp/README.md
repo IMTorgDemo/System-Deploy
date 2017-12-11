@@ -14,4 +14,11 @@ pm2 app.js
 
 ```
 nodemon ./bin/www localhost 3000
+NODE_ENV=development ./bin/www
+```
+
+# Test
+
+```
+npm test
 ```
