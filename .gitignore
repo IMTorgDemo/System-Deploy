@@ -1,4 +1,10 @@
 
+# Data
+*/data_emails/*
+*/data_shared/*
+*/data_spam/*
+
+
 .metadata
 tmp/
 log/

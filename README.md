@@ -87,9 +87,10 @@ MongoClient.connect('mongodb://mongo:27017/blog', function(err, db) {
 
 ### Spark-Mongo Processing
 
-sudo docker run -i -t --link data_store:mongo zero323/mongo-spark:master /bin/bash
+```
+sudo docker run -i -t -v ~/demo_Sim:/home/  --link data_store:mongo zero323/mongo-spark:master /bin/bash
 pyspark --jars ${JARS} --driver-class-path ${SPARK_DRIVER_EXTRA_CLASSPATH}
-
+```
 
 ### Spark-Jupyter Reporting
 
@@ -99,7 +100,7 @@ pyspark --jars ${JARS} --driver-class-path ${SPARK_DRIVER_EXTRA_CLASSPATH}
 
 ```
 mkdir ~/data
-sudo docker run -ti --rm --user root -v ~/data:/home/jovyan/work -p 8888:8888 -e NB_UID=1000 -e NB_GID=100 -e GRANT_SUDO=yes  jupyter/all-spark-notebook
+sudo docker run -ti --rm --user root -v ~/demo_Sim:/home/jovyan/work -p 8888:8888 -e NB_UID=1000 -e NB_GID=100 -e GRANT_SUDO=yes  jupyter/all-spark-notebook
 sudo docker exec -it 3783e6eff869 bash
 ```
 
@@ -113,9 +114,25 @@ sudo docker exec -it 3783e6eff869 bash
 
 
 
-### AirFlow
+### Scheduler
+
+[crontab](https://www.howtogeek.com/101288/how-to-schedule-tasks-on-linux-an-introduction-to-crontab-files/)
+[airflow-tut](http://michal.karzynski.pl/blog/2017/03/19/developing-workflows-with-apache-airflow/)
+[airflow-docs](https://airflow.apache.org/installation.html)
 
 Task scheduler for running spark scripts, cyclically.
+
+```
+#sch_process.bash
+sudo docker run -d -it -v ~/demo_Sim:/home/ --name pyspark --link data_store:mongo zero323/mongo-spark:master
+sudo docker exec  pyspark /usr/local/spark/bin/spark-submit --jars ${JARS} --driver-class-path ${SPARK_DRIVER_EXTRA_CLASSPATH} /home/env_Processing/script_pyspark.py
+```
+
+```crontab
+1 * * * * /home/jason/demo_Sim/sch_process.bash
+```
+
+
 
 
 # Testing
